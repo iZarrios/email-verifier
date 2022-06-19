@@ -1,0 +1,2 @@
+domain,hasMX,hasSPF,spfRecord,hasDMARC,dmarcRecord
+riot.com,false,false,NULL,false,NULL
