@@ -1,2 +1,4 @@
 domain,hasMX,hasSPF,spfRecord,hasDMARC,dmarcRecord
-riot.com,false,false,NULL,false,NULL
+yahoo.com,true,true,v=spf1 redirect=_spf.mail.yahoo.com,true,v=DMARC1; p=reject; pct=100; rua=mailto:d@rua.agari.com; ruf=mailto:d@ruf.agari.com;
+gmail.com,true,true,v=spf1 redirect=_spf.google.com,true,v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+keepo.com,true,false,NULL,false,NULL

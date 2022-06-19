@@ -24,10 +24,10 @@ func main() {
 func readFromSTDIN() [][]string {
 	var res [][]string
 	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Println("Incase you want results just enter an empty string")
 	fmt.Printf("Domain, hasMX, hasSPF, sprRecord, hasDMARC, dmarcRecord\n")
 	for scanner.Scan() {
 		if scanner.Text() == "" {
-			fmt.Print("EXIT")
 			break
 		}
 		s := checkDomain(scanner.Text())
@@ -93,17 +93,20 @@ func writeIntoCSVFile(records [][]string) error {
 	if err != nil {
 		return err
 	}
-	var format [][]string = [][]string{{"domain", "hasMX", "hasSPF", "spfRecord", "hasDMARC", "dmarcRecord"}}
-	// var data = [][]string{
-	// 	{"Name", "Age", "Occupation"},
-	// 	{"Sally", "22", "Nurse"},
-	// 	{"Joe", "43", "Sportsman"},
-	// 	{"Louis", "39", "Author"},
-	// }
-	format = append(format, records...)
+	// 20+ hours awake dont mind why i did this
+	// var format [][]string = [][]string{{"domain", "hasMX", "hasSPF", "spfRecord", "hasDMARC", "dmarcRecord"}}
+	var format []string = []string{"domain", "hasMX", "hasSPF", "spfRecord", "hasDMARC", "dmarcRecord"}
+	// format = append(format, records...)
 
 	w := csv.NewWriter(file)
-	err = w.WriteAll(format)
+
+	err = w.Write(format)
+
+	if err != nil {
+		return err
+	}
+	err = w.WriteAll(records)
+
 	if err != nil {
 		return err
 	}
